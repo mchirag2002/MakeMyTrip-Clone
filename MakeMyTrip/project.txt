@@ -1,0 +1,667 @@
+drop database if exists makemytrip;
+
+create database makemytrip;
+
+use makemytrip;
+
+create table login_info
+(
+ name varchar(30) NOT NULL,
+ email varchar(50) PRIMARY KEY,
+ password varchar(20) NOT NULL,
+ dob date NOT NULL,
+ mob_no varchar(20) NOT NULL,
+ country varchar(20) NOT NULL,
+ security_ques varchar(80) NOT NULL,
+ security_ans varchar(30) NOT NULL,
+ admin boolean
+);
+
+create table flight_info
+(
+ source varchar(30) NOT NULL,
+ destination varchar(30) NOT NULL,
+ airline varchar(30) NOT NULL,
+ class varchar(30) NOT NULL,
+ duration time NOT NULL,
+ stops int(10) NOT NULL,
+ refund_cond boolean NOT NULL,
+ fare decimal(10,2) NOT NULL,
+ departure time NOT NULL,
+ arrival time NOT NULL
+);
+
+create table flight_booked
+(
+ ticket_id int(10) not null,
+ username varchar(50) not null ,
+ pass_no int(40) NOT NULL,
+ pass_name varchar(30) NOT NULL,
+ pass_age int(5) not null,
+ travel_type varchar(30) NOT NULL,
+ travel_date varchar(30) not null,
+ source varchar(30) NOT NULL,
+ destination varchar(30) NOT NULL,
+ airline varchar(30) NOT NULL,
+ class varchar(30) NOT NULL,
+ duration time NOT NULL,
+ fare decimal(10,2) NOT NULL,
+ hotel boolean
+);
+
+  
+create table hotel_info
+(
+ h_name varchar(30) PRIMARY KEY,
+ city varchar(30) NOT NULL,
+ rating int(2),
+ price decimal(10,2),
+ ac boolean,
+ wifi boolean,
+ breakfast boolean,
+close_to varchar(50)
+);
+
+create table hotel_booked
+(
+ ticket_id int(10) UNIQUE NOT NULL,
+ username varchar(50) not null ,
+ no_resident int(2),
+ name_resident varchar(30),
+ h_name varchar(30) NOT NULL,
+ city varchar(30),
+ check_in varchar(30),
+ check_out varchar(30),
+ tot_bill decimal(10,2)
+ );
+
+
+create table mobile_code
+(
+ isd_code varchar(30),
+ country varchar(90)
+);
+
+insert into flight_info
+values("Delhi","Bengaluru","IndiGo","Economy","02:45",0,1,3399,"02:00","04:45");
+
+
+insert into flight_info
+
+values("Bengaluru","Ahmedabad","AirAsia","Economy","04:15",2,1,3211,"10:20","14:35");
+
+insert into flight_info
+
+values("Bengaluru","Ahmedabad","IndiGo","Business","03:45",1,0,14450,"11:10","14:55");
+
+insert into flight_info
+
+values("Bengaluru","Ahmedabad","IndiGo","Economy","04:00",1,0,3500,"12:15","16:15");
+
+
+
+insert into flight_info
+
+values("Ahmedabad","Bengaluru","AirAsia","Economy","04:15",2,1,3211,"10:20","14:35");
+
+insert into flight_info
+
+values("Ahmedabad","Bengaluru","IndiGo","Business","03:45",1,0,14450,"11:10","14:55");
+
+insert into flight_info
+
+values("Ahmedabad","Bengaluru","IndiGo","Economy","04:00",1,0,3500,"12:15","16:15");
+
+
+insert into flight_info
+
+values("Ahmedabad","Delhi","AirAsia","Economy","02:15",0,1,3211,"15:25","17:40");
+
+insert into flight_info
+
+values("Ahmedabad","Delhi","IndiGo","Business","02:45",0,0,14450,"14:10","16:55");
+
+insert into flight_info
+
+values("Ahmedabad","Delhi","IndiGo","Economy","03:00",0,0,3500,"16:15","19:15");
+
+insert into flight_info
+
+values("Ahmedabad","Delhi","SpiceJet","Economy","02:10",0,1,3211,"14:25","16:35");
+
+
+
+insert into flight_info
+
+values("Ahmedabad","Kolkata","AirAsia","Economy","04:30",2,1,4211,"18:30","23:00");
+
+insert into flight_info
+
+values("Ahmedabad","Kolkata","IndiGo","Business","04:45",2,0,14450,"17:10","21:55");
+
+insert into flight_info
+
+values("Ahmedabad","Kolkata","IndiGo","Economy","04:45",2,0,3500,"17:15","21:15");
+
+
+
+insert into flight_info
+
+values("Kolkata","Ahmedabad","AirAsia","Economy","04:30",2,1,4211,"18:30","23:00");
+
+insert into flight_info
+
+values("Kolkata","Ahmedabad","IndiGo","Business","04:45",2,0,14450,"17:10","21:55");
+
+insert into flight_info
+
+values("Kolkata","Ahmedabad","IndiGo","Economy","04:45",2,0,3500,"17:15","21:15");
+
+insert into flight_info
+
+values("Ahmedabad","Mumbai","AirAsia","Economy","02:20",0,1,2848,"05:55","08:15");
+
+insert into flight_info
+
+values("Delhi","Ahmedabad","AirAsia","Economy","02:15",0,1,3211,"15:25","17:40");
+
+insert into flight_info
+
+values("Delhi","Ahmedabad","IndiGo","Business","02:45",0,0,14450,"14:10","16:55");
+
+insert into flight_info
+
+values("Delhi","Ahmedabad","IndiGo","Economy","03:00",0,0,3500,"16:15","19:15");
+
+insert into flight_info
+
+values("Delhi","Ahmedabad","SpiceJet","Economy","02:10",0,1,3211,"14:25","16:35");
+
+
+insert into flight_info
+values("Mumbai","Delhi","AirAsia","Economy","02:20",0,1,2848,"09:55","12:15");
+
+insert into flight_info
+values("Delhi","Bengaluru","Spicejet","Economy","02:50",3,1,3489,"06:10","09:00");
+
+insert into flight_info
+values("Mumbai","Delhi","Spicejet","Business","02:05",2,1,20860,"11:35","13:40");
+
+insert into flight_info
+values("Bengaluru","Delhi","AirAsia","Economy","02:25",0,1,3714,"14:40","16:05");
+
+insert into flight_info
+values("Delhi","Mumbai","IndiGo","Economy","02:10",0,1,3000,"15:00","17:10");
+
+insert into flight_info
+values("Delhi","Bengaluru","IndiGo","Economy","04:35",0,0,4164,"08:30","13:10");
+
+insert into flight_info
+values("Bengaluru","Delhi","IndiGo","Economy","04:35",0,0,4164,"13:30","17:10");
+
+insert into flight_info
+values("Delhi","Bengaluru","Air India","Business","02:30",1,1,26218,"19:25","21:55");
+
+insert into flight_info
+values("Mumbai","Delhi","Vistara","Business","02:15",1,1,14050,"17:30","19:45");
+
+insert into flight_info
+values("Delhi","Mumbai","Vistara","Business","02:15",1,1,14050,"21:30","23:45");
+
+insert into flight_info
+values("Bengaluru","Delhi","Air India","Business","02:30",1,1,26218,"16:25","18:55");
+
+insert into flight_info
+values("Ahmedabad","Mumbai","Spicejet","Business","02:05",2,1,20860,"08:35","10:40");
+
+insert into flight_info
+values("Ahmedabad","Mumbai","AirAsia","Business","02:20",0,1,21848,"05:55","08:15");
+
+insert into flight_info
+values("Bengaluru","Delhi","Spicejet","Economy","02:50",3,1,3489,"10:10","11:00");
+
+insert into flight_info
+values("Delhi","Mumbai","AirAsia","Economy","02:20",0,1,2848,"05:55","08:15");
+
+insert into flight_info
+values("Bengaluru","Delhi","IndiGo","Economy","02:45",0,1,3399,"05:00","07:45");
+
+insert into flight_info
+values("Delhi","Mumbai","Go Air","Economy","02:15",0,0,2976,"02:40","04:55");
+
+insert into flight_info
+values("Delhi","Bengaluru","AirAsia","Economy","02:25",0,1,3714,"17:40","20:05");
+
+insert into flight_info
+values("Jodhpur","Ahmedabad","IndiGo","Economy","00:50",0,1,2500,"12:20","13:30");
+
+insert into flight_info
+values("Mumbai","Delhi","Go Air","Economy","02:15",0,0,2976,"05:30","07:45");
+
+insert into flight_info
+values("Ahmedabad","Jodhpur","IndiGo","Economy","00:50",0,1,2500,"15:00","15:50");
+
+insert into flight_info
+values("Mumbai","Delhi","IndiGo","Economy","02:10",0,1,3000,"12:00","14:10");
+
+insert into flight_info
+values("Ahmedabad","Chennai","IndiGo","Economy","00:50",0,1,2500,"15:00","15:50");
+
+insert into flight_info
+values("Mumbai","Ahmedabad","IndiGo","Economy","02:10",0,1,3000,"12:00","14:10");
+
+insert into flight_info
+values("Ahmedabad","Mumbai","IndiGo","Economy","02:10",0,1,3000,"12:00","14:10");
+
+insert into flight_info
+values("Delhi","Kolkata","Go Air","Economy","03:15",0,0,3976,"02:40","05:55");
+
+insert into flight_info
+values("Mumbai","Bengaluru","AirAsia","Economy","01:25",0,1,3794,"17:40","19:05");
+
+insert into flight_info
+values("Chennai","Ahmedabad","Spicejet","Economy","02:05",2,1,4860,"08:35","10:40");
+
+
+
+insert into flight_info
+values("Mumbai","Ahmedabad","Spicejet","Economy","02:05",2,1,4860,"08:35","10:40");
+
+insert into flight_info
+values("Kolkata","Delhi","Spicejet","Economy","02:50",3,1,3989,"10:10","11:00");
+
+insert into flight_info
+values("Delhi","Mumbai","Spicejet","Business","02:05",2,1,20860,"08:35","10:40");
+
+insert into flight_info
+values("Bengaluru","Delhi","Spicejet","Economy","02:50",3,1,3489,"10:10","11:00");
+
+insert into flight_info
+values("Delhi","Mumbai","Spicejet","Business","02:05",2,1,20860,"08:35","10:40");
+
+insert into flight_info
+values("Bengaluru","Delhi","Spicejet","Business","02:50",3,1,20489,"10:10","11:00");
+
+insert into flight_info
+values("Delhi","Mumbai","AirAsia","Business","02:20",0,1,21848,"05:55","08:15");
+
+insert into flight_info
+values("Bengaluru","Delhi","IndiGo","Business","02:45",0,1,18399,"05:00","07:45");
+
+insert into flight_info
+values("Delhi","Mumbai","Go Air","Business","02:15",0,0,20976,"02:40","04:55");
+
+insert into flight_info
+values("Delhi","Bengaluru","AirAsia","Business","02:25",0,1,25714,"17:40","20:05");
+
+insert into flight_info
+values("Jodhpur","Ahmedabad","IndiGo","Business","00:50",0,1,12500,"12:20","13:30");
+
+insert into flight_info
+values("Mumbai","Delhi","Go Air","Business","02:15",0,0,25976,"05:30","07:45");
+
+insert into flight_info
+values("Ahmedabad","Jodhpur","IndiGo","Business","00:50",0,1,12500,"15:00","15:50");
+
+insert into flight_info
+values("Mumbai","Delhi","IndiGo","Business","02:10",0,1,30000,"12:00","14:10");
+
+insert into flight_info
+values("Mumbai","Ahmedabad","IndiGo","Business","02:10",0,1,30000,"12:20","14:20");
+
+insert into flight_info
+values("Ahmedabad","Chennai","IndiGo","Business","00:50",0,1,29500,"15:00","15:50");
+
+insert into flight_info
+values("Mumbai","Ahmedabad","IndiGo","Business","02:10",0,1,26000,"12:00","14:10");
+
+insert into flight_info
+values("Delhi","Kolkata","Go Air","Business","03:15",0,0,30976,"02:40","05:55");
+
+insert into flight_info
+values("Mumbai","Bengaluru","AirAsia","Business","01:25",0,1,30794,"17:40","19:05");
+
+insert into flight_info
+values("Chennai","Ahmedabad","Spicejet","Business","02:05",2,1,34860,"08:35","10:40");
+
+insert into flight_info
+values("Bengaluru","Chennai","Spicejet","Business","02:05",2,1,34860,"08:35","10:40");
+
+insert into flight_info
+values("Kolkata","Delhi","Spicejet","Business","02:50",3,1,30989,"10:10","11:00");
+
+insert into flight_info
+values("Delhi","Mumbai","Spicejet","Business","02:05",2,1,20860,"08:35","10:40");
+
+insert into flight_info
+values("Bengaluru","Delhi","Spicejet","Business","02:50",3,1,31489,"10:10","11:00");
+
+insert into flight_info
+values("Jodhpur","Mumbai","IndiGo","Economy","01:40",0,1,2500,"12:20","14:00");
+
+insert into flight_info
+values("Ahmedabad","Mumbai","IndiGo","Economy","01:40",0,1,2500,"12:20","14:00");
+
+insert into flight_info
+values("Mumbai","Jodhpur","IndiGo","Economy","01:40",0,1,2500,"14:20","16:00");
+
+insert into flight_info
+values("Jodhpur","Delhi","IndiGo","Economy","01:10",0,1,3000,"12:20","13:30");
+
+insert into flight_info
+values("Delhi","Jodhpur","IndiGo","Economy","01:10",0,1,3000,"14:20","15:30");
+
+
+insert into hotel_info
+values("Radisson Blu Plaza","Delhi",5,7199,1,1,1,"Indira Gandhi International Airport");
+
+insert into hotel_info
+values("Hotel Emperor Palms","Delhi",3,2684,1,1,1,"Karol Bagh");
+
+insert into hotel_info
+values("Hotel Aero Star","Delhi",4,2302,1,1,1,"Kingdom of dreams");
+
+insert into hotel_info
+values("Hotel Royal Orchid","Bengaluru",5,3192,1,1,1,"Embassy Golf Links Business Park");
+
+insert into hotel_info
+values("Shreyas Yoga Retreats","Bengaluru",4,8192,1,1,1,"ISRO Satellite Centre");
+
+insert into hotel_info
+values("The Chancery","Bengaluru",4,2837,1,1,1,"UB City");
+
+insert into hotel_info
+values("Trident Nariman Point","Mumbai",5,8750,1,1,1,"Marine Drive");
+
+insert into hotel_info
+values("Sun-n-Sand","Mumbai",4,6025,1,1,1,"Juhu Beach");
+
+insert into hotel_info
+values("Meluha","Mumbai",4,5125,1,1,1,"Hirandani Business Park");
+
+insert into hotel_info
+values("The Park","Kolkata",5,5380,1,1,1,"Esplande Bus Terminus");
+
+insert into hotel_info
+values("Hotel Auris","Kolkata",4,2390,1,1,1,"Victoria Memorial");
+
+insert into hotel_info
+values("ITC Sonar","Kolkata",5,7480,1,1,1,"NIFT");
+
+insert into hotel_info
+values("Fortune Landmark","Ahmedabad",5,8580,1,1,1,"Indian Red Cross Society");
+
+insert into hotel_info
+values("Hotel Carrefour","Ahmedabad",3,2740,1,1,1,"Ellis Bridge");
+
+insert into hotel_info
+values("Regenta Central Antarim","Ahmedabad",4,3085,1,1,1,"CG Road Market");
+
+insert into hotel_info
+values("Indana Palace","Jodhpur",5,4131,1,1,1,"Jodhpur Airport");
+
+insert into hotel_info
+values("The Ummed","Jodhpur",5,4568,1,1,1,"Bannar Road");
+
+insert into hotel_info
+values("Taj Hari Mahal","Jodhpur",5,10281,1,1,1,"Jodhpur Airport");
+
+insert into hotel_info
+values("The Park, Annasalai","Chennai",5,9281,1,1,1,"Chennai Airport");
+
+insert into hotel_info
+values("Hablis","Chennai",4,5281,1,1,1,"Marina Beach");
+
+
+insert into mobile_code
+values
+("+93","Afghanistan"),
+("+355","Albania"),
+("+213","Algeria"),
+("+1-684","American Samoa"),
+("+376","Andorra"),
+("+244","Angola"),
+("+1-264","Anguilla"),
+("+6721","Antarctica"),
+("+1-268","Antigua and Barbuda"),
+("+54","Argentina"),
+("+374","Armenia"),
+("+297","Aruba"),
+("+247","Ascension Island"),
+("+61","Australia"),
+("+43","Austria"),
+("+994","Azerbaijan"),
+("+1-242","Bahamas"),
+("+973","Bahrain"),
+("+880","Bangladesh"),
+("+1-246","Barbados"),
+("+375","Belarus"),
+("+32","Belgium"),
+("+501","Belize"),
+("+229","Benin"),
+("+1-441","Bermuda"),
+("+975","Bhutan"),
+("+591","Bolivia"),
+("+387","Bosnia and Herzegovina"),
+("+267","Botswana"),
+("+55","Brazil"),
+("+246","British Indian Ocean Territory"),
+("+1-284","British Virgin Islands"),
+("+673","Brunei"),
+("+359","Bulgaria"),
+("+226","Burkina Faso"),
+("+257","Burundi"),
+("+855","Cambodia"),
+("+237","Cameroon"),
+("+1","Canada"),
+("+238","Cape Verde"),
+("+599","Caribbean Netherlands"),
+("+1-345","Cayman Islands"),
+("+236","Central African Republic"),
+("+235","Chad"),
+("+56","Chile"),
+("+86","China"),
+("+61","Christmas Island"),
+("+891","Cocos Keeling Islands"),
+("+57","Colombia"),
+("+269","Comoros"),
+("+242","Congo"),
+("+243","Congo, Democratic Republic"),
+("+682","Cook Islands"),
+("+506","Costa Rica"),
+("+225","Côte d'Ivoire"),
+("+385","Croatia"),
+("+53","Cuba"),
+("+599","Curaçao"),
+("+357","Cyprus"),
+("+420","Czech Republic"),
+("+45","Denmark"),
+("+253","Djibouti"),
+("+1-767","Dominica"),
+("+1-809","Dominican Republic"),
+("+670","East Timor / Timor-Leste"),
+("+593","Ecuador"),
+("+20","Egypt"),
+("+503","El Salvador"),
+("+240","Equatorial Guinea"),
+("+291","Eritrea"),
+("+372","Estonia"),
+("+251","Ethiopia"),
+("+500","Falkland Islands Malvinas"),
+("+298","Faroe Islands"),
+("+679","Fiji"),
+("+358","Finland"),
+("+33","France"),
+("+594","French Guiana"),
+("+689","French Polynesia"),
+("+262","French Southern Territories"),
+("+241","Gabon"),
+("+220","Gambia"),
+("+995","Georgia"),
+("+49","Germany"),
+("+233","Ghana"),
+("+350","Gibraltar"),
+("+30","Greece"),
+("+299","Greenland"),
+("+1-473","Grenada"),
+("+590","Guadeloupe"),
+("+1-671","Guam"),
+("+502","Guatemala"),
+("+44","Guernsey"),
+("+224","Guinea"),
+("+245","Guinea-Bissau"),
+("+592","Guyana"),
+("+509","Haiti"),
+("+1-672","Heard Island and McDonald Islands"),
+("+0","Holy See Vatican City State"),
+("+504","Honduras"),
+("+852","Hong Kong"),
+("+36","Hungary"),
+("+354","Iceland"),
+("+91","India"),
+("+62","Indonesia"),
+("+98","Iran"),
+("+964","Iraq"),
+("+353","Ireland"),
+("+44","Isle of Man"),
+("+972","Israel"),
+("+39","Italy"),
+("+1-876","Jamaica"),
+("+81","Japan"),
+("+44","Jersey"),
+("+962","Jordan"),
+("+7","Kazakhstan"),
+("+254","Kenya"),
+("+686","Kiribati"),
+("+850","Korea, North"),
+("+82","Korea, South"),
+("+383","Kosovo"),
+("+965","Kuwait"),
+("+996","Kyrgyzstan"),
+("+856","Laos"),
+("+371","Latvia"),
+("+961","Lebanon"),
+("+266","Lesotho"),
+("+231","Liberia"),
+("+218","Libyan Arab Jamahiriya"),
+("+423","Liechtenstein"),
+("+370","Lithuania"),
+("+352","Luxembourg"),
+("+853","Macao"),
+("+389","Macedonia"),
+("+261","Madagascar"),
+("+265","Malawi"),
+("+60","Malaysia"),
+("+960","Maldives"),
+("+223","Mali"),
+("+356","Malta"),
+("+692","Marshall Islands"),
+("+596","Martinique"),
+("+222","Mauritania"),
+("+230","Mauritius"),
+("+262","Mayotte"),
+("+52","Mexico"),
+("+691","Micronesia"),
+("+373","Moldova"),
+("+377","Monaco"),
+("+976","Mongolia"),
+("+382","Montenegro"),
+("+1-664","Montserrat"),
+("+212","Morocco"),
+("+258","Mozambique"),
+("+95","Myanmar"),
+("+264","Namibia"),
+("+674","Nauru"),
+("+977","Nepal"),
+("+31","Netherlands"),
+("+599","Netherlands Antilles"),
+("+687","New Caledonia"),
+("+64","New Zealand"),
+("+505","Nicaragua"),
+("+227","Niger"),
+("+234","Nigeria"),
+("+683","Niue"),
+("+672","Norfolk Island"),
+("+1-670","Northern Mariana Islands"),
+("+47","Norway"),
+("+968","Oman"),
+("+92","Pakistan"),
+("+680","Palau"),
+("+970","Palestine"),
+("+507","Panama"),
+("+675","Papua New Guinea"),
+("+595","Paraguay"),
+("+51","Peru"),
+("+63","Philippines"),
+("+64","Pitcairn"),
+("+48","Poland"),
+("+351","Portugal"),
+("+1","Puerto Rico"),
+("+974","Qatar"),
+("+262","Réunion"),
+("+40","Romania"),
+("+7","Russia"),
+("+250","Rwanda"),
+("+590","Saint Barthélemy"),
+("+290","Saint Helena"),
+("+1-869","Saint Kitts and Nevis"),
+("+1-758","Saint Lucia"),
+("+590","Saint Martin"),
+("+508","Saint Pierre and Miquelon"),
+("+1-784","Saint Vincent and the Grenadines"),
+("+685","Samoa"),
+("+378","San Marino"),
+("+239","Sao Tome and Principe"),
+("+966","Saudi Arabia"),
+("+221","Senegal"),
+("+381","Serbia"),
+("+248","Seychelles"),
+("+232","Sierra Leone"),
+("+65","Singapore"),
+("+421","Slovakia"),
+("+386","Slovenia"),
+("+677","Solomon Islands"),
+("+252","Somalia"),
+("+27","South Africa"),
+("+500","South Georgia and the South Sandwich Islands"),
+("+34","Spain"),
+("+94","Sri Lanka"),
+("+249","Sudan"),
+("+597","Suriname"),
+("+0","Svalbard and Jan Mayen"),
+("+268","Swaziland"),
+("+46","Sweden"),
+("+41","Switzerland"),
+("+963","Syria"),
+("+886","Taiwan"),
+("+992","Tajikistan"),
+("+255","Tanzania"),
+("+66","Thailand"),
+("+228","Togo"),
+("+690","Tokelau"),
+("+676","Tonga"),
+("+1-868","Trinidad and Tobago"),
+("+216","Tunisia"),
+("+90","Turkey"),
+("+993","Turkmenistan"),
+("+1-649","Turks and Caicos Islands"),
+("+688","Tuvalu"),
+("+971","UAE"),
+("+256","Uganda"),
+("+380","Ukraine"),
+("+44","United Kingdom"),
+("+1","United States"),
+("+0","United States Minor Outlying Islands"),
+("+598","Uruguay"),
+("+998","Uzbekistan"),
+("+678","Vanuatu"),
+("+379","Vatican City"),
+("+58","Venezuela"),
+("+84","Vietnam / Viet Nam"),
+("+1-340","Virgin Islands, U.S."),
+("+681","Wallis and Futuna"),
+("+212","Western Sahara"),
+("+967","Yemen"),
+("+260","Zambia"),
+("+263","Zimbabwe"),
+("+358","Aland Islands");
