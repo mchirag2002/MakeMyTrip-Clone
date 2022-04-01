@@ -1,5 +1,20 @@
-# MakeMyTrip-Clone
-This Project was Made by Chirag Mathur and Madhav Bohra.
-To run, import the project in NetBeans and also import the jCalendar and mysql-connector according to your MySQL version.
-Copy and run the project.txt file in MySQL and that will create your database locally.
-Run the project using Netbeans or .jar file.
+# MakeMyTrip Clone
+
+## Contributors:
+- <a href = "https://www.github.com/mchirag2002">Chirag Mathur</a>
+- <a href = "https://github.com/DepressedCoderBruh">Madhav Bohra</a>
+
+## Requirements and Dependencies:
+- Java JDK
+- MySQL
+- jCalendar
+- MySQL connector for the respective version
+
+## Instructions to clone:
+- Import the project in Netbeans IDE along with the provided dependencies.
+- Copy the contents of 'project.txt' and paste them into MySQL Command Line Client.
+- Build the project and run it via Netbeans
+
+## Instructions to run directly:
+- Copy the contents of 'project.txt' and paste them into MySQL Command Line Client.
+- Go to the bin folder and run the .jar file
